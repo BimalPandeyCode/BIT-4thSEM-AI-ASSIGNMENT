@@ -62,7 +62,7 @@ int findFirstNegativeIndexInList(){
     return -1;
 }
 
-void GreedySearch(int s,int e){
+void Astar(int s,int e){
     int found = 0;
 
     list[0].index = s;
@@ -124,7 +124,7 @@ int main(){
         list[i].parent = -1;
     }
 
-    GreedySearch(startI,endI);
+    Astar(startI,endI);
 
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;

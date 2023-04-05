@@ -103,7 +103,7 @@ void GreedySearch(int s,int e){
         currIndex = list[listIndex].parent;
     }
     int listIndex = findIndexInList(s);
-    printf("%d=%d\t\n",list[listIndex].index,list[listIndex].cost);
+    printf("%d=%d\t\n",list[listIndex].index,0);
 }
 
 int main(){

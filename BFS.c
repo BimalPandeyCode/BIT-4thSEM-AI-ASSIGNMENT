@@ -48,25 +48,7 @@ void display_2d_Array(int arr[LENGTH][LENGTH]){
     printf("\n");
 }
 
-int* copyArray(int arr[LENGTH]) {
-    int* newArr = malloc(LENGTH * sizeof(int));
-    for (int i = 0; i < LENGTH; i++) {
-        newArr[i] = arr[i];
-    }
-    return newArr;
-}
-
-int** copy_2d_array(int arr[LENGTH][LENGTH]) {
-    int** new_arr = malloc(LENGTH * sizeof(int *));
-    for (int i = 0; i < LENGTH; i++) {
-        new_arr[i] = malloc(LENGTH * sizeof(int));
-        for (int j = 0; j < LENGTH; j++) {
-            new_arr[i][j] = arr[i][j];
-        }
-    }
-    return new_arr;
-}
-void copy_2d_array2(int arr[LENGTH][LENGTH], int new_arr[LENGTH][LENGTH]) {
+void copy_2d_array(int arr[LENGTH][LENGTH], int new_arr[LENGTH][LENGTH]) {
     for (int i = 0; i < LENGTH; i++) {
         for (int j = 0; j < LENGTH; j++) {
             new_arr[i][j] = arr[i][j];
@@ -88,15 +70,13 @@ int BFS(int level[LENGTH],int visited[LENGTH][LENGTH],int s,int e,int cost[LENGT
                                     {-1,-1,-1,-1,-1,-1},
                                     {-1,-1,-1,-1,-1,-1},
                                     {-1,-1,-1,-1,-1,-1}};
-    copy_2d_array2(visited,newVisited);
-    // display_2d_Array(newVisited);
+    copy_2d_array(visited,newVisited);
 
     for(int i = 0; i < LENGTH; i++){
         if(level[i] == -1) continue;
         if(level[i] == e){
             newVisited[i][includes(newVisited[i],-1)] = e;
             visited[i][includes(visited,-1)] = e;
-            // printf("Cost: %d, graph: %d\n",cost[i],graph[i][e]);
             displayArray(visited[i],cost[i]);
             continue;
         }
@@ -108,9 +88,7 @@ int BFS(int level[LENGTH],int visited[LENGTH][LENGTH],int s,int e,int cost[LENGT
             }
             newVisited[newLevelIndex][includes(newVisited[newLevelIndex],-1)] = level[i];
 
-            // display_2d_Array(newVisited);
-
-            int isIncluded = includes(newVisited[i],j);
+            int isIncluded = includes(newVisited[newLevelIndex],j);
             if(isIncluded != -1) continue;
             newLevel[newLevelIndex] = j;
             if(cost[i] != -1){
