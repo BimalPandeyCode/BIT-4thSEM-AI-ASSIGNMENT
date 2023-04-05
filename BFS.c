@@ -76,7 +76,7 @@ int BFS(int level[LENGTH],int visited[LENGTH][LENGTH],int s,int e,int cost[LENGT
         if(level[i] == -1) continue;
         if(level[i] == e){
             newVisited[i][includes(newVisited[i],-1)] = e;
-            visited[i][includes(visited,-1)] = e;
+            visited[i][includes(visited[i],-1)] = e;
             displayArray(visited[i],cost[i]);
             continue;
         }
