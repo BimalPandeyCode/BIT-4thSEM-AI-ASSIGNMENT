@@ -1,7 +1,8 @@
 # // Naive bayes algorithm
 
 noOfDataSet = int(input("How many days?"))
-noOfPossibleValuesInEachData = int(input("How many possible values does each data set have?"))
+noOfPossibleValuesInEachData = int(
+    input("How many possible values does each data set have?"))
 varNames = []
 print("Give names to each variable")
 
@@ -34,12 +35,16 @@ for i in range(noOfDataSet):
         # print("No")
         noOfNo += 1
     data.append(iData)
+
+
 def printDataSet():
     for i in range(noOfDataSet):
         print("In day " + str(i))
         for j in range(noOfPossibleValuesInEachData + 1):
             print(str(varNames[j]) + "=" + str(data[i][j]))
         print("---------")
+
+
 # printDataSet()
 frequency = []
 # Calculating frequency
@@ -48,17 +53,17 @@ for i in range(noOfPossibleValuesInEachData):
     for j in range(noOfDataSet):
         # if any(freq["name"] == data[j][i] for freq in frequency_table)
         if data[j][i] in frequency_table:
-            if(data[j][noOfPossibleValuesInEachData] == 1):
+            if (data[j][noOfPossibleValuesInEachData] == 1):
                 frequency_table[data[j][i]]["yes"] += 1
             else:
                 frequency_table[data[j][i]]["no"] += 1
             # frequency_table[data[j][i]] += 1
         else:
             # frequency_table[data[j][i]] = 1
-            if(data[j][noOfPossibleValuesInEachData] == 1):
-                frequency_table[data[j][i]] = {"yes":1,"no":0}
+            if (data[j][noOfPossibleValuesInEachData] == 1):
+                frequency_table[data[j][i]] = {"yes": 1, "no": 0}
             else:
-                frequency_table[data[j][i]] = {"yes":0,"no":1}
+                frequency_table[data[j][i]] = {"yes": 0, "no": 1}
     frequency.append(frequency_table)
     print("for"+str(varNames[i])+": ")
     print(frequency_table)
@@ -82,7 +87,7 @@ for i in range(noOfPossibleValuesInEachData):
 forYes *= noOfYes/noOfDataSet
 forNo *= noOfNo/noOfDataSet
 
-if(forYes > forNo):
+if (forYes > forNo):
     print(f"the answer is yes p(yes|x') =  {forYes} > p(no|x') = {forNo}")
 else:
     print(f"the answer is no p(yes|x') =  {forYes} < p(no|x') = {forNo}")
