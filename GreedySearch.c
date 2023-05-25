@@ -24,7 +24,7 @@ int graph[LENGTH][LENGTH] = {
 
 struct node list[LENGTH];
 
-void moveToStart(int index) {
+void moveNodeToStart(int index) {
     struct node temp = list[index];
     for (int i = index; i > 0; i--) {
         list[i] = list[i-1];
@@ -32,7 +32,7 @@ void moveToStart(int index) {
     list[0] = temp;
 }
 
-int findMinFIndex(){
+int returnMinF_Value_Index(){
     int min = 100000;
     int minI = -1;
 
@@ -45,7 +45,7 @@ int findMinFIndex(){
     }
     return minI;
 }
-int findIndexInList(int index){
+int includes(int index){
     for(int i =0;i<LENGTH;i++){
         if(list[i].index == index){
             return i;
@@ -53,7 +53,7 @@ int findIndexInList(int index){
     }
     return -1;
 }
-int findFirstNegativeIndexInList(){
+int returnFirstNegativeIndex(){
     for(int i =0;i<LENGTH;i++){
         if(list[i].index == -1){
             return i;
@@ -75,16 +75,16 @@ void GreedySearch(int s,int e){
             continue; 
         };
 
-        int min_f_index = findMinFIndex();
-        moveToStart(min_f_index);
+        int min_f_index = returnMinF_Value_Index();
+        moveNodeToStart(min_f_index);
 
         list[0].visited = 1;
 
         for(int i =0;i<LENGTH;i++){
             if(graph[list[0].index][i] == -1 || list[0].index == i) continue;
-            int indexI = findIndexInList(i);
+            int indexI = includes(i);
             if(indexI == -1){
-                int curr = findFirstNegativeIndexInList();
+                int curr = returnFirstNegativeIndex();
                 list[curr].index = i;
                 list[curr].cost = list[0].cost + graph[list[0].index][i];
                 list[curr].parent = list[0].index;
@@ -98,11 +98,11 @@ void GreedySearch(int s,int e){
     }
     int currIndex = e;
     while (currIndex != s){
-        int listIndex = findIndexInList(currIndex);
+        int listIndex = includes(currIndex);
         printf("%d=%d\t",list[listIndex].index,list[listIndex].cost);
         currIndex = list[listIndex].parent;
     }
-    int listIndex = findIndexInList(s);
+    int listIndex = includes(s);
     printf("%d=%d\t\n",list[listIndex].index,0);
 }
 

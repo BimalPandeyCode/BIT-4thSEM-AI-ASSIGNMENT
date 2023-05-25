@@ -24,7 +24,7 @@ int graph[LENGTH][LENGTH] = {
 
 struct node list[LENGTH];
 
-void moveToStart(int index) {
+void moveNodeToStart(int index) {
     struct node temp = list[index];
     for (int i = index; i > 0; i--) {
         list[i] = list[i-1];
@@ -77,7 +77,7 @@ void Astar(int s,int e){
         };
 
         int min_f_index = findMinFIndex();
-        moveToStart(min_f_index);
+        moveNodeToStart(min_f_index);
 
         list[0].visited = 1;
 
